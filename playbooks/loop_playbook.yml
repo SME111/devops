@@ -1,0 +1,29 @@
+---
+
+- hosts: localhost 
+  connection: local
+
+  vars: 
+   fruits:
+    - Apple
+    - Banana
+    - Grapes
+    - Orange
+   Flowers:
+    - Rose 
+    - Lotus
+    - Sunflower
+  
+  tasks:
+   - command: echo "{{ item }}"
+     with_items: '{{ fruits }}'
+
+   - debug: msg= "{{ item }}"
+     with_items: '{{fruits}}'
+
+   - command: echo "{{item}}"
+     with_items: '{{ Flowers }}'
+  
+   - debug: msg= "{{ item }}" 
+     with_items: '{{ Flowers }}'
+

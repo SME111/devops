@@ -1,0 +1,22 @@
+---
+
+- name: Execute the two commands on web_node1
+  hosts: web_node1
+  gather_facts: no
+  tasks:
+  
+   - name: Execute the date command
+     command: date
+     register: out_date
+  
+   - name: debug date command output
+     debug: var=out_date
+
+   - name: Execute the command to display /etc/hosts file
+     command: cat /etc/hosts
+     register: out_file
+  
+   - name: debug the file content
+     debug: var=out_file
+
+... 

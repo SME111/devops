@@ -1,0 +1,20 @@
+
+- hosts: dev
+  vars:
+
+    list1: ['Template iterate','Template loop','Template item']
+    list2: ['Monday', 'Tuesday','Wednesday']
+
+  tasks:
+
+    - name: Ansible template loop example.
+      template:
+        src: template_exampleloop.j2
+        dest: /home/output.txt
+        mode: 0777
+ 
+    - name: Ansible lopp with list exaxmple
+      template:
+         src: template_exampleloop.j2
+         dest: /home/output.txt
+         mode: 0755

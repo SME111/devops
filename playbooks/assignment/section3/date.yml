@@ -1,0 +1,58 @@
+---
+
+# Update name of the play to "Execute a date command on localhost"
+
+# ------------------------------
+# #           BEFORE
+# # ------------------------------
+# #-
+# #  name: Play 1
+# #  hosts: localhost
+# #  tasks:
+# #    -
+# #      name: Execute a date command
+# #      command: date
+#
+# # ------------------------------
+# #           AFTER
+# # ------------------------------
+
+-
+  name: Execute a date command
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Execute the date command  
+      command: date 
+      register: out_date
+
+    - name: get date output
+      debug: var=out_date
+
+-
+  name: Execute a command to display hosts file on localhost 
+  hosts: localhost
+  gather_facts: no
+  tasks: 
+
+    - name: Execute a command to display /etc/hosts file 
+      command: cat /etc/hosts
+      register: out_file
+    
+    - name: Display file contents 
+      debug: msg='{{out_file}}'
+
+- 
+  name: Execute two commands on local host
+  hosts: localhost
+  gather_facts: no
+  tasks:
+
+    - name: Execute the date command
+      command: date
+     
+
+    - name: Execute a coomand to display the /etc/hosts file 
+      command: cat /etc/hosts
+...
+

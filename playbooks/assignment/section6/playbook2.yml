@@ -1,0 +1,19 @@
+-
+  name: Am in an Adult or a Child
+  hosts: localhost
+  gather_facts: no
+  vars:
+    age: 25
+  tasks:
+    - command: echo "I am a Child"
+      when: age < 18
+      register: temp_var
+
+    - command: echo "I am an Adult"
+      when: age >= 18
+      register: temp_var
+    
+    - name: check the age
+      debug: msg={{ temp_var }}
+
+... 

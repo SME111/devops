@@ -1,0 +1,13 @@
+---
+
+  gather_facts: no
+  hosts: new
+  name: "Copy public key to remote server"
+  tasks: 
+    - 
+      authorized_key:
+      key: "{{ lookup('file',/root/.ssh/id_rsa.pub)}}"
+      name: "set authorized keys taken from file"
+      state: present
+      user: root
+...

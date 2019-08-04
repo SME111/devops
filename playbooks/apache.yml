@@ -1,0 +1,28 @@
+---
+
+- hosts: dev
+  gather_facts: false
+
+  tasks: 
+    - name: Install Apache on M2 Server 
+      yum:  pkg=httpd state=installed
+      become: yes
+      register: temp_var
+      
+    - name: debugging 
+      debug: var=temp_var
+
+    - name: Print Sucessful Installation 
+      debug: msg='httpd installation is successfull'
+      when: temp_var.rc == 0 
+
+     
+    - name: Priniting Failure Message
+      debug: msg='httpd installation is failed!!'
+      when: temp_var is failed 
+    
+    - name: Printing msg if Already installed 
+      debug: msg='httpd is already installed'
+      when: temp_var.changed == false and temp_var.rc == 0
+
+...
